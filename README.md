@@ -20,5 +20,3 @@ Use Code like this:
 
 This will set the percentage to 20 percent.
 It hides if you set it to 100%, this will be configurable in future versions.
-
-If the first line is #JS or #CSS or #HTML, then the code is highlighted accordingly. 
