@@ -1,9 +1,14 @@
 /*
 ---
+script: moogressBar.js
+version: 0.1
 description: with moogressBar you can easily create a progress bar powered by mooTools
-
+license: MIT-style
 authors:
 - Christopher Beloch
+
+requires: 
+  core:1.2.4: '*'
 
 provides: [Moogressbar]
 
