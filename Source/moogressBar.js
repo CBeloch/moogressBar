@@ -1,5 +1,6 @@
 /*
 ---
+
 script: moogressBar.js
 version: 0.1
 description: with moogressBar you can easily create a progress bar powered by mooTools
@@ -12,6 +13,7 @@ requires:
 
 provides: [Moogressbar]
 
+...
 */
 
 var MoogressBar = new Class({
