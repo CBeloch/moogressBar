@@ -8,7 +8,7 @@ With moogressBar you can create an easy progress bar for your website.
 How to use
 ----------
 
-Include the moogressBar.js in your project or moogressBar.tiny.js for a compressed version (compressed with bananascript)
+Include the moogressBar.js in your project.
 Add an Element to your code where the progress bar should be placed ( default: $('moogressBar') ).
 Check the moogressBar.md in the Docs directory to customize the default settings.
 
