@@ -1,0 +1,189 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<title>moogressBar Demo</title>
+		<script type="text/javascript" src="../Source/mootools-core.js"></script>
+		<script type="text/javascript" src="../Source/moogressBar.js"></script>
+
+		<style type="text/css">
+	
+		html, body {
+			color: black;
+			background-color: #c9c9c9;
+			font-size: 12px;
+			font-family: Helvetica, Verdana, Arial, sans-serif;
+		}
+		#content {
+			border-color: #656565;
+			border-style: solid;
+			border-width: 3px;
+			padding: 10px;
+			background-color: white;
+			width: 700px;
+			margin: 0px auto;
+			text-align: left;
+		}
+		
+		a {
+			text-decoration: none;
+			font-weight: bold;
+			color: #6eb7e9;
+		}
+		code {
+			margin: 10px;
+			border-color: #484848;
+			border-style: dashed;
+			border-width: 1px;
+			padding: 10px;
+			display: block;
+			width: 90%;
+			background-color: #e1e1e1;
+		}
+		#first_mb, #second_mb, #third_mb, #fourth_mb {
+			height: 10px;
+			width: 95%;
+			margin: 0px auto;
+		}
+		
+		#first_mb, #second_mb, #third_mb{
+			background-color: #cecece;
+		}
+		#foot {
+			text-align: right;
+		}
+		#download_img {
+			margin-top: 20px;
+			margin-right: 50px;
+		}
+		</style>
+	</head>
+	<body>
+	
+		<div id="content">
+			<img src="images/moogressBar.png" alt="moogressBar" width="200" height="50"/>
+			
+			<p>
+				MoogressBar is a small javascript extension for <a href="http://www.mootools.net" target="_blank" title="mootools javascript framework">mootools</a>.
+			</p>
+			
+			<h2>How to use</h2>
+			<p>
+				At first you have to include the <b>moogressBar.js</b> file after your mootools framework files:
+					
+					<code>
+						&lt;script type="text/javascript" src="js/mootools-core.js"&gt;&lt;/script&gt;<br>
+						&lt;script type="text/javascript" src="js/moogressBar.js"&gt;&lt;/script&gt;
+					</code>
+			
+				After that you can easily init the moogressBar by using the following code:
+					
+					<code>
+						var myMoogressBar = new MoogressBar();
+					</code>
+
+				Set a percent value with the <b>setPercentage()</b> function:
+					
+					<code>
+						myMoogressBar.setPercentage(20);
+					</code>
+
+				Check the <b>moogressBar.txt</b> for more documentation.
+			</p>
+
+			<h2>Examples</h2>
+			
+			<p>
+				Default
+				<div id="first_mb"></div>
+				
+				<center>
+					<input type="button" value="Set to 25%" onclick="javascript: myFirstMB.setPercentage(25);">
+					<input type="button" value="Set to 50%" onclick="javascript: myFirstMB.setPercentage(50);">
+					<input type="button" value="Set to 75%" onclick="javascript: myFirstMB.setPercentage(75);">
+				</center>
+				
+				<script type="text/javascript">
+					myFirstMB = new MoogressBar({bgImage: 'images/progressbar/blue.gif', parent_el: $('first_mb'), percentage: 80});
+				</script>
+			</p>
+
+			<p>
+				Transition: Fx.Transitions.Bounce.easeOut<br>
+				Duration: long
+				<div id="second_mb"></div>
+				
+				<center>
+					<input type="button" value="Set to 25%" onclick="javascript: mySecondMB.setPercentage(25);">
+					<input type="button" value="Set to 50%" onclick="javascript: mySecondMB.setPercentage(50);">
+					<input type="button" value="Set to 75%" onclick="javascript: mySecondMB.setPercentage(75);">
+				</center>
+				
+				<script type="text/javascript">
+					mySecondMB = new MoogressBar({
+													bgImage: 'images/progressbar/blue.gif', 
+													parent_el: $('second_mb'), 
+													percentage: 50,
+													animation_settings: {
+																			duration: 'long',
+																			transition: Fx.Transitions.Bounce.easeOut
+																		}
+												});
+				</script>
+			</p>
+
+			<p>
+				no animation
+				<div id="third_mb"></div>
+				
+				<center>
+					<input type="button" value="Set to 25%" onclick="javascript: myThirdMB.setPercentage(25);">
+					<input type="button" value="Set to 50%" onclick="javascript: myThirdMB.setPercentage(50);">
+					<input type="button" value="Set to 75%" onclick="javascript: myThirdMB.setPercentage(75);">
+				</center>
+				
+				<script type="text/javascript">
+					myThirdMB = new MoogressBar({
+													bgImage: 'images/progressbar/blue.gif', 
+													parent_el: $('third_mb'), 
+													percentage: 60,
+													animation: false
+												});
+				</script>
+			</p>
+
+			<p>
+				different graphic<br>
+				parent without background
+				<div id="fourth_mb"></div>
+				
+				<center>
+					<input type="button" value="Set to 25%" onclick="javascript: myFourthMB.setPercentage(25);">
+					<input type="button" value="Set to 50%" onclick="javascript: myFourthMB.setPercentage(50);">
+					<input type="button" value="Set to 75%" onclick="javascript: myFourthMB.setPercentage(75);">
+				</center>
+				
+				<script type="text/javascript">
+					myFourthMB = new MoogressBar({
+													bgImage: 'images/progressbar/green.gif', 
+													parent_el: $('fourth_mb'), 
+													percentage: 20
+												});
+				</script>
+			</p>
+
+		
+			<div id="foot">by <a href="http://blog.cbeloch.de" title="cbeloch.de Blog" target="_blank">cbeloch</a></div>
+		</div>
+
+		<script type="text/javascript">
+		var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+		document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+		<script type="text/javascript">
+		try {
+		var pageTracker = _gat._getTracker("UA-2875809-8");
+		pageTracker._trackPageview();
+		} catch(err) {}</script>
+
+	</body>
+</html>
