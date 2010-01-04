@@ -2,7 +2,7 @@
 ---
 
 script: moogressBar.js
-version: 0.1
+version: 0.2
 description: with moogressBar you can easily create a progress bar powered by mooTools
 license: MIT-style
 authors:
@@ -17,7 +17,7 @@ provides: [Moogressbar]
 */
 
 var MoogressBar = new Class({
-                     Implements: Options,
+                     Implements: [Options, Events],
                      
                      options: {
                                  bgImage:     "/images/progressbar/blue.gif",  // What is the background-image?
@@ -43,6 +43,8 @@ var MoogressBar = new Class({
                                                            'width': this.options.percentage + '%',
                                                            'height': this.options.height,
                                                            'background-image': 'url(' + this.options.bgImage + ')'
+                                                           
+                                                           // Border Radius deactivated, because Firefox is causing drawing problems
                                                            // 'border-radius': '5px',
                                                            // '-webkit-border-radius': '5px',
                                                            // '-moz-border-radius': '5px'
@@ -65,6 +67,8 @@ var MoogressBar = new Class({
                          }
                          else
                            this.theBar.setStyle('width', percentage + '%');
+                         
+                         this.fireEvent("change", [percentage], 0);
                          
                          // Fade out the parent element including the bar after the bar reaches 100%
                          if(percentage >= 100)
