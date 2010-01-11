@@ -132,13 +132,16 @@
 			</p>
 
 			<p>
-				no animation
+				no animation<br>
+				no hide on 100%<br>
+				onFinish Event
 				<div id="third_mb"></div>
 				
 				<center>
 					<input type="button" value="Set to 25%" onclick="javascript: myThirdMB.setPercentage(25);">
 					<input type="button" value="Set to 50%" onclick="javascript: myThirdMB.setPercentage(50);">
 					<input type="button" value="Set to 75%" onclick="javascript: myThirdMB.setPercentage(75);">
+					<input type="button" value="Set to 100%" onclick="javascript: myThirdMB.setPercentage(100);">
 				</center>
 				
 				<script type="text/javascript">
@@ -146,7 +149,11 @@
 													bgImage: 'images/progressbar/blue.gif', 
 													parent_el: $('third_mb'), 
 													percentage: 60,
-													animation: false
+													hide: false,
+													animation: true,
+													onFinish: function(){
+														alert("It's full");
+													}
 												});
 				</script>
 			</p>
@@ -154,7 +161,7 @@
 			<p>
 				different graphic<br>
 				parent without background<br>
-				onChange Event
+				onChange Event<br>
 				<div id="fourth_mb"></div>
 				
 				<center>
