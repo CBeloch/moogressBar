@@ -7,7 +7,7 @@ Progress-Bar around to work with the great MooTools Framework
 
 ### Implements:
 
-Options
+Options, Events
 
 MoogressBar Method: constructor {#MoogressBar:constructor}
 ---------------------------------------------------------
@@ -27,8 +27,14 @@ MoogressBar Method: constructor {#MoogressBar:constructor}
 * percentage - (*integer*) percentage to initialize with (default: 0)
 * height - (*string*) height of the bar (default: '10px' (height of the default background-image))
 * parent_el - (*element*) the element where the bar should be injected (default: $('moocessBar'))
+* hide - (*boolean*) if this is set to false, the bar will not hide after setting it to 100% (default: true)
 * animation - (*boolean*) set false to disable Morph animation of the bar (default: true)
 * animation_settings - (*options*) you can specify the options of the Fx Class here, take a look at the Fx Documentation -> http://mootools.net/docs/core/Fx/Fx
+
+### Events:
+
+* onChange - Executed on any setPercentage request
+* onFinish - Fired if progress bar reaches 100% or more
 
 MoogressBar Method: setPercentage {#MoogressBar:setPercentage}
 -------------------------------------------------------------

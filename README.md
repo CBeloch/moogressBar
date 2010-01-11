@@ -3,7 +3,7 @@ moogressBar
 
 With moogressBar you can create an easy progress bar for your website.
 
-![Screenshot](http://moogressbar.cbeloch.de/images/moogressBar.png)
+![Screenshot](http://moogressbar.cbeloch.de/moogressBar_forge.jpg)
 
 How to use
 ----------
@@ -19,4 +19,4 @@ Use Code like this:
 	myMoogressBar.setPercentage(20);
 
 This will set the percentage to 20 percent.
-It hides if you set it to 100%, this will be configurable in future versions.
+It hides if you set it to 100%, but you can disable it using the hide option.
