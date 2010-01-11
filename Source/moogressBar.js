@@ -24,6 +24,7 @@ var MoogressBar = new Class({
                                  percentage:  0,  // Start at which percentage?
                                  height:      '10px',  // Height of the bar
                                  parent_el:   $('moogressBar'),  // Where to place?
+                                 hide:        true,  // Hide on >=100%?
                                  animation:   true,  // Want smooth animation filling the bar?
                                  animation_settings: {unit: '%', duration: 'normal'}
                               },
@@ -73,8 +74,15 @@ var MoogressBar = new Class({
                          // Fade out the parent element including the bar after the bar reaches 100%
                          if(percentage >= 100)
                          {
-                           this.options.parent_el.fade('out');
-                           this.options.parent_el.setStyle('display','none');
+                           if(this.options.animation && this.options.hide)
+                           {
+                             this.options.parent_el.fade('out');
+                             this.options.parent_el.setStyle('display','none');
+                           }
+                           else if(this.options.hide)
+                           	 this.options.parent_el.setStyle('display','none');
+
+                           this.fireEvent("finish");
                          }
                      }
                  });
