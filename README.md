@@ -15,7 +15,7 @@ Check the moogressBar.md in the Docs directory to customize the default settings
 Use Code like this:
 
 	#JS
-	var myMoogressBar = new MoogressBar();
+	var myMoogressBar = new MoogressBar(element);
 	myMoogressBar.setPercentage(20);
 
 This will set the percentage to 20 percent.

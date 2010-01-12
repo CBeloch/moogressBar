@@ -78,7 +78,7 @@
 				After that you can easily init the moogressBar by using the following code:
 					
 					<code>
-						var myMoogressBar = new MoogressBar();
+						var myMoogressBar = new MoogressBar(element);
 					</code>
 
 				Set a percent value with the <b>setPercentage()</b> function:
@@ -92,93 +92,100 @@
 
 			<h2>Examples</h2>
 			
-			<p>
-				Default
-				<div id="first_mb"></div>
-				
-				<center>
-					<input type="button" value="Set to 25%" onclick="javascript: myFirstMB.setPercentage(25);">
-					<input type="button" value="Set to 50%" onclick="javascript: myFirstMB.setPercentage(50);">
-					<input type="button" value="Set to 75%" onclick="javascript: myFirstMB.setPercentage(75);">
-				</center>
-				
-				<script type="text/javascript">
-					myFirstMB = new MoogressBar('first_mb',{bgImage: 'images/progressbar/blue.gif', percentage: 80});
-				</script>
-			</p>
+			<h3>Default</h3>
 
-			<p>
-				different graphic<br>
-				Transition: Fx.Transitions.Bounce.easeOut<br>
-				Duration: long
-				<div id="second_mb"></div>
+			<p id="first_msg"></p>
+			
+			<div id="first_mb"></div>
 				
-				<center>
-					<input type="button" value="Set to 25%" onclick="javascript: mySecondMB.setPercentage(25);">
-					<input type="button" value="Set to 50%" onclick="javascript: mySecondMB.setPercentage(50);">
-					<input type="button" value="Set to 75%" onclick="javascript: mySecondMB.setPercentage(75);">
-				</center>
+			<div style="text-align: center">
+				<input type="button" value="Set to 25%" onclick="javascript: myFirstMB.setPercentage(25);">
+				<input type="button" value="Set to 50%" onclick="javascript: myFirstMB.setPercentage(50);">
+				<input type="button" value="Set to 75%" onclick="javascript: myFirstMB.setPercentage(75);">
+			</div>
 				
-				<script type="text/javascript">
-					mySecondMB = new MoogressBar('second_mb',{
-													bgImage: 'images/progressbar/green_animated.gif', 
-													percentage: 50,
-													animation_settings: {
-																			duration: 'long',
-																			transition: Fx.Transitions.Bounce.easeOut
-																		}
-												});
-				</script>
-			</p>
+			<script type="text/javascript">
+				myFirstMB = new MoogressBar('first_mb',{
+					bgImage: 'images/progressbar/blue.gif',
+					percentage: 80,
+					onChange: function(per){
+						document.id('first_msg').set('text','The current percentage is '+per+' %').highlight();
+					}
+				});
+			</script>
 
-			<p>
-				no animation<br>
-				no hide on 100%<br>
-				onFinish Event
-				<div id="third_mb"></div>
-				
-				<center>
-					<input type="button" value="Set to 25%" onclick="javascript: myThirdMB.setPercentage(25);">
-					<input type="button" value="Set to 50%" onclick="javascript: myThirdMB.setPercentage(50);">
-					<input type="button" value="Set to 75%" onclick="javascript: myThirdMB.setPercentage(75);">
-					<input type="button" value="Set to 100%" onclick="javascript: myThirdMB.setPercentage(100);">
-				</center>
-				
-				<script type="text/javascript">
-					myThirdMB = new MoogressBar('third_mb',{
-													bgImage: 'images/progressbar/blue.gif', 
-													percentage: 60,
-													hide: false,
-													animation: true,
-													onFinish: function(){
-//														alert("It's full");
-													}
-												});
-				</script>
-			</p>
+			<h3>Transition: Fx.Transitions.Bounce.easeOut</h3>
 
-			<p>
-				different graphic<br>
-				parent without background<br>
-				onChange Event<br>
-				<div id="fourth_mb"></div>
+			<div id="second_mb"></div>
 				
-				<center>
-					<input type="button" value="Set to 25%" onclick="javascript: myFourthMB.setPercentage(25);">
-					<input type="button" value="Set to 50%" onclick="javascript: myFourthMB.setPercentage(50);">
-					<input type="button" value="Set to 75%" onclick="javascript: myFourthMB.setPercentage(75);">
-				</center>
+			<div style="text-align: center">
+				<input type="button" value="Set to 25%" onclick="javascript: mySecondMB.setPercentage(25);">
+				<input type="button" value="Set to 50%" onclick="javascript: mySecondMB.setPercentage(50);">
+				<input type="button" value="Set to 75%" onclick="javascript: mySecondMB.setPercentage(75);">
+			</div>
 				
-				<script type="text/javascript">
-					myFourthMB = new MoogressBar('fourth_mb',{
-													bgImage: 'images/progressbar/green.gif', 
-													percentage: 20,
-													onChange: function(percentage){
-//														alert("changed to " + percentage + "%");
-													}
-												});
-				</script>
-			</p>
+			<script type="text/javascript">
+				mySecondMB = new MoogressBar('second_mb',{
+					bgImage: 'images/progressbar/green_animated.gif', 
+					percentage: 50,
+					fx: {
+						duration: 'long',
+						transition: Fx.Transitions.Bounce.easeOut
+					}
+				});
+			</script>
+
+			<h3>With onFinish event</h3>
+
+			<p id="third_msg"></p>
+
+			<div id="third_mb"></div>
+				
+				
+			<div style="text-align: center">
+				<input type="button" value="Set to 25%" onclick="javascript: myThirdMB.setPercentage(25);">
+				<input type="button" value="Set to 50%" onclick="javascript: myThirdMB.setPercentage(50);">
+				<input type="button" value="Set to 75%" onclick="javascript: myThirdMB.setPercentage(75);">
+				<input type="button" value="Set to 100%" onclick="javascript: myThirdMB.setPercentage(100);">
+			</div>
+				
+			<script type="text/javascript">
+				myThirdMB = new MoogressBar('third_mb',{
+					bgImage: 'images/progressbar/blue.gif', 
+					percentage: 60,
+					hide: true,
+					onFinish: function(){
+						document.id('third_msg')
+							.set('text',"It's full, and will hide now")
+							.highlight();
+							
+						document.id(this).fade('out');
+					}
+				});
+			</script>
+			
+			<h3>Without Fx</h3>
+			
+			<p id="fourth_msg"></p>
+			
+			<div id="fourth_mb"></div>
+				
+			<div style="text-align: center">
+				<input type="button" value="Set to 25%" onclick="javascript: myFourthMB.setPercentage(25);">
+				<input type="button" value="Set to 50%" onclick="javascript: myFourthMB.setPercentage(50);">
+				<input type="button" value="Set to 75%" onclick="javascript: myFourthMB.setPercentage(75);">
+			</div>
+			
+			<script type="text/javascript">
+				myFourthMB = new MoogressBar('fourth_mb',{
+					bgImage: 'images/progressbar/green.gif', 
+					percentage: 20,
+					fx: false,
+					onChange: function(percentage){
+						document.id('fourth_msg').set('text','The current percentage is '+percentage+' %').highlight();
+					}
+				});
+			</script>
 
 		
 			<div id="foot">by <a href="http://blog.cbeloch.de" title="cbeloch.de Blog" target="_blank">cbeloch</a></div>

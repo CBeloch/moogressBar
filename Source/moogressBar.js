@@ -24,9 +24,7 @@ var MoogressBar = new Class({
 		bgImage: 'blue.gif',  // What is the background-image?
 		percentage: 0,  // Start at which percentage?
 		height: 10,  // Height of the bar
-		hide: true,  // Hide on >=100%?
-		animation: true,  // Want smooth animation filling the bar?
-		fxOptions: {
+		fx: { // The effects for the scroll, set to null or false if you don't want this effect
 			unit: '%',
 			duration: 'normal',
 			property: 'width'
@@ -42,19 +40,18 @@ var MoogressBar = new Class({
 			.setStyle('z-index','999');
 		
 		// Set the current percentage
-		this.percentage = this.options.percentage;
+		this.current = this.options.percentage;
 		
 		// Preload important Images
 		//var bgImageAsset = new Asset.image(this.options.bgImage);
 		
 		// Draw bar
 		this.theBar = new Element('div', {
-		 	id: 'mcPercentage',
 			'styles': {
 				display: 'block',
 				width: this.options.percentage + '%',
 				height: this.options.height,
-				'background-image': 'url(' + this.options.bgImage + ')'/*,
+				'background-image': 'url(' + this.options.bgImage + ')',/*
 				// Border Radius deactivated, because Firefox is causing drawing problems
 				'border-radius': '5px',
 				'-webkit-border-radius': '5px',
@@ -63,34 +60,46 @@ var MoogressBar = new Class({
 		}).inject(parent);
 		
 		// Will it be Animated?
-		if(this.options.animation)
-			this.fx = new Fx.Tween(this.theBar, this.options.fxOptions);
+		if(this.options.fx)
+			this.fx = new Fx.Tween(this.theBar, this.options.fx);
 	},
 	
 	// function to modify the percentage status
 	setPercentage: function(percentage){
+		
+		if(this.fx){
+			// Fire the events when the fx is complete
+			this.fx.addEvent('complete',function(){
+				if(percentage >= 100){
+					this.fireEvent('finish');
+				}
+				this.fireEvent('change',percentage);
+			}.bind(this));
+		}else{
+			// Fire the events immediately when there's no fx
+			this.fireEvent('change',percentage);
+			if(percentage >= 100){
+				this.fireEvent('finish');
+			}
+		}
+
+		// Change the percentage bar
 		if(this.fx) {
-			this.fx.cancel().start(this.percentage,percentage);
+			this.fx.cancel().start(this.current,percentage);
 		} else {
 			this.theBar.setStyle('width', percentage + '%');
 		}
-		
-		this.fireEvent('change',percentage);
-		
-		// Fade out the parent element including the bar after the bar reaches 100%
-		if(percentage >= 100){
-			if(this.options.animation && this.options.hide) {
-				this.options.parent_el.fade('out');
-			} else if(this.options.hide){
-				this.options.parent_el.setStyle('display','none');
-			}
-			this.fireEvent('finish');
-		}
-		this.percentage = percentage;
+
+		// Change the current percentage
+		this.current = percentage;
 	},
 	
 	getPercentage: function(){
-		return this.percentage;
+		return this.current;
+	},
+	
+	toElement: function(){
+		return this.parent;
 	}
 
 });

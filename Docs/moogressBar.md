@@ -1,5 +1,5 @@
-Class: MoogressBar {#MoogressBar}
-===============================
+Class: MoogressBar
+==================
 
 MoogressBar is a Progress-Bar class for MooTools.
 This has been developed, because I haven't found any nice looking
@@ -9,16 +9,17 @@ Progress-Bar around to work with the great MooTools Framework
 
 Options, Events
 
-MoogressBar Method: constructor {#MoogressBar:constructor}
----------------------------------------------------------
+MoogressBar Method: constructor
+-------------------------------
 
 
 ### Syntax:
 
-	var myMoogressBar = new MoogressBar(options);
+	var myMoogressBar = new MoogressBar(element,options);
 
 ### Arguments:
 
+1. element - (*element*,*string*) The element that you add the progressbar to
 1. options - (*options*) see below
 
 ### Options:
@@ -26,18 +27,15 @@ MoogressBar Method: constructor {#MoogressBar:constructor}
 * bgImage - (*string*) the path to the background image (default: '/images/progressbar/blue.gif')
 * percentage - (*integer*) percentage to initialize with (default: 0)
 * height - (*string*) height of the bar (default: '10px' (height of the default background-image))
-* parent_el - (*element*) the element where the bar should be injected (default: $('moocessBar'))
-* hide - (*boolean*) if this is set to false, the bar will not hide after setting it to 100% (default: true)
-* animation - (*boolean*) set false to disable Morph animation of the bar (default: true)
-* animation_settings - (*options*) you can specify the options of the Fx Class here, take a look at the Fx Documentation -> http://mootools.net/docs/core/Fx/Fx
+* fx - (*options*,*bool*) False if you don't want Fx, otherwise you can specify the options of the Fx Class here, take a look at the Fx Documentation -> http://mootools.net/docs/core/Fx/Fx
 
 ### Events:
 
 * onChange - Executed on any setPercentage request
 * onFinish - Fired if progress bar reaches 100% or more
 
-MoogressBar Method: setPercentage {#MoogressBar:setPercentage}
--------------------------------------------------------------
+MoogressBar Method: setPercentage
+---------------------------------
 
 
 ### Syntax:
@@ -47,4 +45,30 @@ MoogressBar Method: setPercentage {#MoogressBar:setPercentage}
 ### Arguments:
 
 1. percentage - (*integer*) To which status should the bar jump? if it reaches 100 it automatically fades out
+
+
+MoogressBar Method: getPercentage
+---------------------------------
+
+
+### Syntax:
+
+	myMoogressBar.getPercentage();
+
+### Returns:
+
+(*integer*) The current percentage
+
+
+MoogressBar Method: toElement
+---------------------------------
+
+
+### Syntax:
+
+	document.id(myMoogressBar);
+
+### Returns:
+
+(*element*) The element that wraps the bar
 
