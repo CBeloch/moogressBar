@@ -44,7 +44,7 @@ MoogressBar Method: setPercentage
 
 ### Arguments:
 
-1. percentage - (*integer*) To which status should the bar jump? if it reaches 100 it automatically fades out
+1. percentage - (*integer*) To which status should the bar jump?
 
 
 MoogressBar Method: getPercentage
