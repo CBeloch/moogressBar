@@ -37,7 +37,7 @@ var MoogressBar = new Class({
 	initialize: function(parent,options){
 		this.setOptions(options);
 		this.parent = document.id(parent)
-			.setStyle('z-index','999');
+			.setStyle('z-index',999);
 		
 		// Set the current percentage
 		this.current = this.options.percentage;
@@ -46,7 +46,7 @@ var MoogressBar = new Class({
 		//var bgImageAsset = new Asset.image(this.options.bgImage);
 		
 		// Draw bar
-		this.theBar = new Element('div', {
+		this.bar = new Element('div', {
 			'styles': {
 				display: 'block',
 				width: this.options.percentage + '%',
@@ -61,7 +61,7 @@ var MoogressBar = new Class({
 		
 		// Will it be Animated?
 		if(this.options.fx)
-			this.fx = new Fx.Tween(this.theBar, this.options.fx);
+			this.fx = new Fx.Tween(this.bar, this.options.fx);
 	},
 	
 	// function to modify the percentage status
