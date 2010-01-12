@@ -87,7 +87,7 @@ var MoogressBar = new Class({
 		if(this.fx) {
 			this.fx.cancel().start(this.current,percentage);
 		} else {
-			this.theBar.setStyle('width', percentage + '%');
+			this.bar.setStyle('width', percentage + '%');
 		}
 
 		// Change the current percentage
