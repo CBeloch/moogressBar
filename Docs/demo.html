@@ -103,7 +103,7 @@
 				</center>
 				
 				<script type="text/javascript">
-					myFirstMB = new MoogressBar({bgImage: 'images/progressbar/blue.gif', parent_el: $('first_mb'), percentage: 80});
+					myFirstMB = new MoogressBar('first_mb',{bgImage: 'images/progressbar/blue.gif', percentage: 80});
 				</script>
 			</p>
 
@@ -120,9 +120,8 @@
 				</center>
 				
 				<script type="text/javascript">
-					mySecondMB = new MoogressBar({
+					mySecondMB = new MoogressBar('second_mb',{
 													bgImage: 'images/progressbar/green_animated.gif', 
-													parent_el: $('second_mb'), 
 													percentage: 50,
 													animation_settings: {
 																			duration: 'long',
@@ -146,9 +145,8 @@
 				</center>
 				
 				<script type="text/javascript">
-					myThirdMB = new MoogressBar({
+					myThirdMB = new MoogressBar('third_mb',{
 													bgImage: 'images/progressbar/blue.gif', 
-													parent_el: $('third_mb'), 
 													percentage: 60,
 													hide: false,
 													animation: true,
@@ -172,9 +170,8 @@
 				</center>
 				
 				<script type="text/javascript">
-					myFourthMB = new MoogressBar({
+					myFourthMB = new MoogressBar('fourth_mb',{
 													bgImage: 'images/progressbar/green.gif', 
-													parent_el: $('fourth_mb'), 
 													percentage: 20,
 													onChange: function(percentage){
 //														alert("changed to " + percentage + "%");
