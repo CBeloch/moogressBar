@@ -51,7 +51,7 @@ var MoogressBar = new Class({
 				display: 'block',
 				width: this.options.percentage + '%',
 				height: this.options.height,
-				'background-image': 'url(' + this.options.bgImage + ')',/*
+				'background-image': 'url(' + this.options.bgImage + ')'/*,
 				// Border Radius deactivated, because Firefox is causing drawing problems
 				'border-radius': '5px',
 				'-webkit-border-radius': '5px',
