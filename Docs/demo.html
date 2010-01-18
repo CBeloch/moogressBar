@@ -142,7 +142,7 @@
 			<div id="third_mb"></div>
 				
 				
-			<div style="text-align: center">
+			<div id="third_buttons" style="text-align: center">
 				<input type="button" value="Set to 25%" onclick="javascript: myThirdMB.setPercentage(25);">
 				<input type="button" value="Set to 50%" onclick="javascript: myThirdMB.setPercentage(50);">
 				<input type="button" value="Set to 75%" onclick="javascript: myThirdMB.setPercentage(75);">
@@ -153,13 +153,13 @@
 				myThirdMB = new MoogressBar('third_mb',{
 					bgImage: 'images/progressbar/blue.gif', 
 					percentage: 60,
-					hide: true,
 					onFinish: function(){
 						document.id('third_msg')
 							.set('text',"It's full, and will hide now")
 							.highlight();
 							
 						document.id(this).fade('out');
+						document.id("third_buttons").fade('out');
 					}
 				});
 			</script>

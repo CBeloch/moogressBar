@@ -7,6 +7,7 @@ description: with moogressBar you can easily create a progress bar powered by mo
 license: MIT-style
 authors:
 - Christopher Beloch
+- Arian Stolwijk (code improvements 0.2 -> 0.3)
 
 requires: 
   core:1.2.4: '*'

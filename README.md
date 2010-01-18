@@ -19,4 +19,3 @@ Use Code like this:
 	myMoogressBar.setPercentage(20);
 
 This will set the percentage to 20 percent.
-It hides if you set it to 100%, but you can disable it using the hide option.
