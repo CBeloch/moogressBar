@@ -2,7 +2,7 @@
 ---
 
 script: moogressBar.js
-version: 0.2
+version: 0.4
 description: with moogressBar you can easily create a progress bar powered by mooTools
 license: MIT-style
 authors:
@@ -25,6 +25,7 @@ var MoogressBar = new Class({
 		bgImage: 'blue.gif',  // What is the background-image?
 		percentage: 0,  // Start at which percentage?
 		height: 10,  // Height of the bar
+		hide: true, // Hide the bar on 100%?
 		fx: { // The effects for the scroll, set to null or false if you don't want this effect
 			unit: '%',
 			duration: 'normal',
@@ -42,9 +43,6 @@ var MoogressBar = new Class({
 		
 		// Set the current percentage
 		this.current = this.options.percentage;
-		
-		// Preload important Images
-		//var bgImageAsset = new Asset.image(this.options.bgImage);
 		
 		// Draw bar
 		this.bar = new Element('div', {
@@ -73,6 +71,12 @@ var MoogressBar = new Class({
 			this.fx.addEvent('complete',function(){
 				if(percentage >= 100){
 					this.fireEvent('finish');
+					
+					// hide bar
+					if(this.options.hide){
+						this.parent.tween('opacity', 0).tween('width', 0).tween('height', 0);
+						this.fx.set('opacity', 0);
+					}
 				}
 				this.fireEvent('change',percentage);
 			}.bind(this));
@@ -81,6 +85,10 @@ var MoogressBar = new Class({
 			this.fireEvent('change',percentage);
 			if(percentage >= 100){
 				this.fireEvent('finish');
+				
+				if(this.options.hide){
+					this.parent.setStyle('display', 'none');
+				}
 			}
 		}
 
