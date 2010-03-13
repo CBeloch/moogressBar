@@ -94,7 +94,7 @@ var MoogressBar = new Class({
 
 		// Change the percentage bar
 		if(this.fx) {
-			this.fx.cancel().start(this.current,percentage);
+			this.fx.cancel().start(this.bar.getStyle('width').toInt(), percentage);
 		} else {
 			this.bar.setStyle('width', percentage + '%');
 		}
@@ -109,6 +109,9 @@ var MoogressBar = new Class({
 	
 	toElement: function(){
 		return this.parent;
-	}
+	},
 
+	increasePercentage: function(percentage) {
+		this.setPercentage(this.current + percentage);
+	}
 });
