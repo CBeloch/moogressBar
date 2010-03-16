@@ -2,7 +2,7 @@
 ---
 
 script: moogressBar.js
-version: 0.5
+version: 0.5.1
 description: with moogressBar you can easily create a progress bar powered by mooTools
 license: MIT-style
 authors:
