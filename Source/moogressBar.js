@@ -2,7 +2,7 @@
 ---
 
 script: moogressBar.js
-version: 0.5.1
+version: 0.5.2
 description: with moogressBar you can easily create a progress bar powered by mooTools
 license: MIT-style
 authors:
@@ -24,8 +24,9 @@ var MoogressBar = new Class({
 	options: {
 		bgImage: 'blue.gif',  // What is the background-image?
 		percentage: 0,  // Start at which percentage?
-		height: 10,  // Height of the bar
+		height: 20,  // Height of the bar
 		hide: true, // Hide the bar on 100%?
+		label: true, // show percentage?
 		fx: { // The effects for the scroll, set to null or false if you don't want this effect
 			unit: '%',
 			duration: 'normal',
@@ -47,9 +48,13 @@ var MoogressBar = new Class({
 		// Draw bar
 		this.bar = new Element('div', {
 			'styles': {
-				display: 'block',
-				width: this.options.percentage + '%',
-				height: this.options.height,
+				'display': 'block',
+				'width': this.options.percentage + '%',
+				'height': this.options.height,
+				'text-align': 'center',
+				'line-height': this.options.height + 'px',
+				'color': '#FFFFFF',
+				'font-weight': 'bold',
 				'background-image': 'url(' + this.options.bgImage + ')'/*,
 				// Border Radius deactivated, because Firefox is causing drawing problems
 				'border-radius': '5px',
@@ -58,16 +63,27 @@ var MoogressBar = new Class({
 			}
 		}).inject(parent);
 		
+		if(this.options.label)
+		{
+			Element('span', {
+				'text': this.options.percentage
+			}).inject(this.bar);
+		}
+		
 		// Will it be Animated?
 		if(this.options.fx)
+		{
 			this.fx = new Fx.Tween(this.bar, this.options.fx);
+			this.labelFx = new Fx.Counter(this.bar, this.options.fx, "%");
+		}
 	},
 	
 	// function to modify the percentage status
 	setPercentage: function(percentage){
-		
 		if(this.fx){
 			// Fire the events when the fx is complete
+			this.labelFx.start(this.current, percentage);
+			
 			this.fx.addEvent('complete',function(){
 				if(percentage >= 100){
 					this.fireEvent('finish');
@@ -114,4 +130,24 @@ var MoogressBar = new Class({
 	increasePercentage: function(percentage) {
 		this.setPercentage(this.current + percentage);
 	}
+});
+
+// The following Block is the same as Fx.Log shown here: 
+// http://mootools.net/blog/2010/05/18/a-magical-journey-into-the-base-fx-class/
+
+Fx.Counter = new Class({
+    
+    Extends: Fx,
+    
+    initialize: function(element, options, after){
+        this.parent(options);
+        this.after = after;
+        this.element = document.id(element);
+    },
+    
+    set: function(now){
+        this.element.set('text', now.round() + this.after);
+        return this;
+    }
+    
 });
