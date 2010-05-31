@@ -66,7 +66,7 @@ var MoogressBar = new Class({
 		if(this.options.label)
 		{
 			Element('span', {
-				'text': this.options.percentage
+				'text': this.options.percentage + "%"
 			}).inject(this.bar);
 		}
 		
@@ -98,6 +98,7 @@ var MoogressBar = new Class({
 			}.bind(this));
 		}else{
 			// Fire the events immediately when there's no fx
+			this.bar.set('text', percentage + "%");
 			this.fireEvent('change',percentage);
 			if(percentage >= 100){
 				this.fireEvent('finish');
